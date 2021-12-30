@@ -6,7 +6,6 @@ input.onButtonPressed(Button.A, function () {
 // 先把子彈定位到主角
 // 再發射
 input.onButtonPressed(Button.AB, function () {
-    soundExpression.slide.play()
     子彈.set(LedSpriteProperty.X, 主角.get(LedSpriteProperty.X))
     子彈.set(LedSpriteProperty.Y, 主角.get(LedSpriteProperty.Y))
     子彈.set(LedSpriteProperty.Brightness, 255)
@@ -25,7 +24,6 @@ input.onButtonPressed(Button.B, function () {
 // 設定初始值
 let 子彈: game.LedSprite = null
 let 主角: game.LedSprite = null
-soundExpression.spring.playUntilDone()
 game.setScore(0)
 主角 = game.createSprite(2, 4)
 let 飛機 = game.createSprite(0, 0)
@@ -34,7 +32,6 @@ let 飛機 = game.createSprite(0, 0)
 // 打到飛機就加分
 basic.forever(function () {
     if (子彈.isTouching(飛機)) {
-        soundExpression.twinkle.play()
         game.addScore(1)
         飛機.set(LedSpriteProperty.X, 0)
         飛機.set(LedSpriteProperty.Y, 0)
@@ -42,17 +39,17 @@ basic.forever(function () {
 })
 // 飛機移動，速度不固定
 basic.forever(function () {
-    basic.pause(randint(200, 400))
+    basic.pause(randint(100, 300))
+    飛機.change(LedSpriteProperty.X, 1)
     if (飛機.get(LedSpriteProperty.X) == 4) {
         basic.pause(500)
-        飛機.change(LedSpriteProperty.X, 1)
-        飛機.set(LedSpriteProperty.Y, 0)
+        飛機.set(LedSpriteProperty.X, 0)
+        飛機.change(LedSpriteProperty.Y, 1)
     }
 })
 // 被打就結束
 basic.forever(function () {
     if (飛機.isTouching(主角)) {
         game.gameOver()
-        soundExpression.sad.playUntilDone()
     }
 })
