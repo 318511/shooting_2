@@ -51,7 +51,7 @@ basic.forever(function () {
 // 被打就結束
 basic.forever(function () {
     if (飛機.isTouching(主角)) {
-        music.startMelody(music.builtInMelody(Melodies.Funeral), MelodyOptions.Once)
+        music.startMelody(music.builtInMelody(Melodies.Funeral), MelodyOptions.OnceInBackground)
         game.gameOver()
     }
 })
