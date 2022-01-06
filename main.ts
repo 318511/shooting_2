@@ -9,7 +9,7 @@ input.onButtonPressed(Button.AB, function () {
     子彈.set(LedSpriteProperty.X, 主角.get(LedSpriteProperty.X))
     子彈.set(LedSpriteProperty.Y, 主角.get(LedSpriteProperty.Y))
     子彈.set(LedSpriteProperty.Brightness, 255)
-    soundExpression.giggle.play()
+    soundExpression.twinkle.play()
     for (let index = 0; index < 4; index++) {
         子彈.change(LedSpriteProperty.Y, -1)
         basic.pause(100)
@@ -52,5 +52,6 @@ basic.forever(function () {
 basic.forever(function () {
     if (飛機.isTouching(主角)) {
         game.gameOver()
+        soundExpression.sad.play()
     }
 })
