@@ -9,7 +9,6 @@ input.onButtonPressed(Button.AB, function () {
     子彈.set(LedSpriteProperty.X, 主角.get(LedSpriteProperty.X))
     子彈.set(LedSpriteProperty.Y, 主角.get(LedSpriteProperty.Y))
     子彈.set(LedSpriteProperty.Brightness, 255)
-    soundExpression.twinkle.play()
     for (let index = 0; index < 4; index++) {
         子彈.change(LedSpriteProperty.Y, -1)
         basic.pause(100)
@@ -34,6 +33,7 @@ let 飛機 = game.createSprite(0, 0)
 basic.forever(function () {
     if (子彈.isTouching(飛機)) {
         game.addScore(1)
+        soundExpression.happy.play()
         飛機.set(LedSpriteProperty.X, 0)
         飛機.set(LedSpriteProperty.Y, 0)
     }
@@ -51,7 +51,13 @@ basic.forever(function () {
 // 被打就結束
 basic.forever(function () {
     if (飛機.isTouching(主角)) {
+        music.playMelody("A F E F D G E F ", 300)
         game.gameOver()
-        soundExpression.sad.play()
+    }
+})
+control.inBackground(function () {
+    for (let index = 0; index < 1e+68; index++) {
+        music.setVolume(80)
+        music.playMelody("E D G F B A C5 B ", 120)
     }
 })
