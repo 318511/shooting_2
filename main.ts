@@ -9,6 +9,7 @@ input.onButtonPressed(Button.AB, function () {
     子彈.set(LedSpriteProperty.X, 主角.get(LedSpriteProperty.X))
     子彈.set(LedSpriteProperty.Y, 主角.get(LedSpriteProperty.Y))
     子彈.set(LedSpriteProperty.Brightness, 255)
+    soundExpression.giggle.play()
     for (let index = 0; index < 4; index++) {
         子彈.change(LedSpriteProperty.Y, -1)
         basic.pause(100)
